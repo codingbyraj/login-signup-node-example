@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Kart - Home Page</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div id="content">        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="add-product-section" class="shopping-system">
+                        <button>add product</button>
+                        <button>products</button>
+                        <button>cart</button>
+
+                        <h1>Add Product to the Database</h1>
+                        <div class="form">
+                            <div class="input-group">
+                                <input id="product-name" class="form-control" type="text" placeholder="Enter Product Name" v-model="name" required>
+                            </div>
+                            <div class="input-group">
+                                <select id="vendor-name" v-model="selectedVendor" class="form-control">
+                                    <option value="">--Select Vendor--</option>
+                                    <option v-for="vendor in vendors" v-bind:value="vendor.id">{{vendor.name}}</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter Price" v-model="price" class="form-control">
+                            </div>
+                            <div class="input-group">
+                                <button v-on:click="addProduct" class="btn btn-default">Add Product</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.10.2.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/axios.min.js"></script>
+    <script src="../js/addproduct.js"></script>
+</body>
+
+</html>

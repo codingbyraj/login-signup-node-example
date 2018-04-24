@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Kart - Cart Page</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="menu">
+                    <ul>
+                        <input type="button" value="Home" v-on:click="showProducts">
+                        <input type="button" value="Products" v-on:click="showProducts">
+                        <form action="/product/cart">
+                            <input type="submit" value="Cart">
+                        </form>
+                    </ul>
+                </div>
+                <div id="show-cart" class="shopping-system">
+                    <h1>Your Cart</h1>
+                    <table>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Menufacturer</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                        <tr v-for="cartItem in cartItems">
+
+                            <td>
+                                <span class="cart-item">
+                                    {{cartItem.product.name}}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="cart-item">
+                                    {{cartItem.vendor.name}}
+                                </span>
+                            </td>
+                            <!-- price per item  -->
+                            <td>
+                                <span class="cart-item">
+                                    &#x20B9;{{cartItem.product.price}}
+                                </span>
+                            </td>
+                            <!-- quantity -->
+                            <td>
+                                <span class="cart-item">
+                                    <button class="btn-quantity btn-minus" v-on:click="decreaseQuantity(cartItem.id)">&dash;</button>
+                                    {{cartItem.quantity}}
+                                    <button class="btn-quantity btn-plus" v-on:click="increaseQuantity(cartItem.id)">+</button>
+                                </span>
+                            </td>
+
+                            <!--  total price -->
+                            <td>
+                                <span class="cart-item">
+                                    &#x20B9;{{cartItem.product.price * cartItem.quantity}}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                Total : {{sum}}
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.10.2.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/axios.min.js"></script>
+    <script src="../js/showcart.js"></script>
+</body>
+
+</html>

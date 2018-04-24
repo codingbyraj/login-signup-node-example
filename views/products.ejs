@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>E-Kart - Products Page</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">E-Shopping</a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="#">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cart</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="menu">
+                    <ul>
+                        <input type="button" value="Home" v-on:click="showProducts">
+                        <input type="button" value="Products" v-on:click="showProducts">
+                        <form action="/product/cart">
+                            <input type="submit" value="Cart">
+                        </form>
+                    </ul>
+                </div>
+
+                <div id="show-products" class="shopping-system">
+                    <h1>All Products</h1>
+                    <div class="shopping-system clearfix">
+                        <select name="" id="vendor" v-model="vendorForFilter" v-on:change="getProductsByVendor()">
+                            <option value="" selected>All Products</option>
+                            <option v-bind:value="vendor.id" v-for="vendor in vendors">{{vendor.name}}</option>
+                        </select>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Brand Name</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tr v-for="product in products">
+                            <td>
+                                <span>{{product.name}}</span>
+                            </td>
+                            <td>
+                                <span>&#x20B9;{{product.price}}</span>
+                            </td>
+                            <td>
+                                <span>
+                                    <button class="btn-addtocart" v-bind:id="product.id" v-on:click="addToCart(product.id, product.vendorId)">Buy</button>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="../lib/jquery-1.10.2.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/axios.min.js"></script>
+    <script src="../js/showproduct.js"></script>
+</body>
+
+</html>
